@@ -137,7 +137,9 @@ class Player:
     def get_colors(self, game_state):
         ours = self.get_our_cards(game_state)
         suit1 = ours[0]
+        suit2 = ours[1]
         print("The suit of the first card is {}".format(suit1))
+        print("The suit of the second card is {}".format(suit2))
         print("We have {}".format(ours))
 
 
