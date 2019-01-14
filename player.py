@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_1.02"
+    VERSION = "Version_1.0"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -20,15 +20,15 @@ class Player:
                     return self.get_stack(game_state)
                 else:
                     if self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state) > self.get_stack(game_state):
-                        return self.get_stack()
+                        return self.get_stack(game_state)
                     else:
                         return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
-                return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
-                return self.get_minimum_raise(game_state)
-            elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
-                return self.get_minimum_raise(game_state)
+            #elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
+            #    return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
+            #elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
+            #    return self.get_minimum_raise(game_state)
+            #elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
+            #    return self.get_minimum_raise(game_state)
             else:
                 return 0
 
