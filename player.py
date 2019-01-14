@@ -23,7 +23,7 @@ class Player:
                     else:
                         return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
             elif our_cards[0]['rank'] in "JQKA" and our_cards[1]['rank'] in "JQKA":
-                return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
+                return self.do_raise(game_state)
 
 
     def do_raise(self, game_state):
@@ -33,6 +33,7 @@ class Player:
         player = self.get_our_player(game_state)
         if game_state and player:
             return current_buy_in - our_bet + minimum_raise
+        return 0
 
     def get_current_buy_in(self, game_state):
         current_buy_in = 0
