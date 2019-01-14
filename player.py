@@ -66,7 +66,6 @@ class Player:
                 pass
         return current_buy_in
 
-
     def get_minimum_raise(self, game_state):
         minimum_raise = 0
         if game_state:
@@ -116,11 +115,11 @@ class Player:
         if game_state:
             return game_state['bet_index']
 
-
     def get_colors(self, game_state):
         ours = self.get_our_cards(game_state)
+        suit1 = ours[0]['suit']
+        print("The suit of the first card is {}".format(suit1))
         print("We have {}".format(ours))
-
 
     def get_our_bet(self, game_state):
         our_player = self.get_our_player(game_state)
@@ -131,4 +130,3 @@ class Player:
             except KeyError as e:
                 pass
         return our_bet
-
