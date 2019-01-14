@@ -1,13 +1,11 @@
 class Player:
-    VERSION = "Version_0.6"
+    VERSION = "Version_0.7"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
-        try:
-            raise_value != None
+        if raise_value:
             return raise_value
-        except:
-            return 0
+        return 0
 
     def showdown(self, game_state):
         pass
