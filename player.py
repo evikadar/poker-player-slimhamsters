@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_0.9"
+    VERSION = "Version_1.01"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
