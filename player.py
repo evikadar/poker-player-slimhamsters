@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_1.1"
+    VERSION = "Version_2.0"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -22,7 +22,6 @@ class Player:
             self.check_at_start(game_state, our_cards)
         if community_card_number == 5:
             self.check_at_start(game_state, our_cards)
-
 
     def check_at_start(self, game_state, our_cards):
         if our_cards:
