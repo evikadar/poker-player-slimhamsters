@@ -3,6 +3,7 @@ class Player:
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
+        self.get_colors(game_state)
         if raise_value:
             return raise_value
         return 0
@@ -11,7 +12,6 @@ class Player:
         pass
 
     def check_our_hand(self, game_state):
-        self.get_colors(game_state)
         self.get_our_cards(game_state)
         community_card_number = 0
         if community_card_number == 0:
