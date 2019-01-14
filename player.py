@@ -1,9 +1,13 @@
 class Player:
-    VERSION = "Version_0.5"
+    VERSION = "Version_0.6"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
-        return raise_value
+        try:
+            raise_value != None
+            return raise_value
+        except:
+            return 0
 
     def showdown(self, game_state):
         pass
@@ -50,10 +54,12 @@ class Player:
         our_player = None
         try:
             our_player_index = game_state['in_action']
+            print("I am in get our player. Our player index is {}.".format(our_player_index))
         except KeyError as e:
             pass
         if our_player_index:
             our_player = game_state['players'][our_player_index]
+        print("Get our player will return {}".format(our_player))
         return our_player
 
     def get_our_cards(self, game_state):
