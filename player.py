@@ -4,7 +4,6 @@ class Player:
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
         if raise_value is not None:
-            self.check_same_colors(game_state)
             return raise_value
         else:
             return 0
