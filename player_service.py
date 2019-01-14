@@ -39,6 +39,7 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         if game_state:
             current_buy_in = game_state['current_buy_in']
+            our_player_index = None
             try:
                 our_player_index = game_state['in_action']
             except KeyError as e:
