@@ -2,9 +2,9 @@ class Player:
     VERSION = "Version_0.10"
 
     def betRequest(self, game_state):
-        self.check_same_colors(game_state)
         raise_value = self.check_our_hand(game_state)
         if raise_value is not None:
+            self.check_same_colors(game_state)
             return raise_value
         else:
             return 0
@@ -15,7 +15,6 @@ class Player:
 
     def check_our_hand(self, game_state):
         our_cards = self.get_our_cards(game_state)
-        print("Our cards are {}".format(our_cards))
         if our_cards:
             if our_cards[0]['rank'] == our_cards[1]['rank']:
                 if our_cards[0]['rank'] in "10JQKA":
