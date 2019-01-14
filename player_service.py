@@ -39,7 +39,7 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
         if game_state:
             current_buy_in = game_state['current_buy_in']
             if current_buy_in:
-                sys.stderr.write("\n" + "\n" + "Looking for this" + current_buy_in + "\n" + "\n" + "\n")
+                sys.stderr.write("\n" + "\n" + "Looking for this" + str(current_buy_in) + "\n" + "\n" + "\n")
 
 
 
