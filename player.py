@@ -19,10 +19,22 @@ class Player:
                 return self.check_at_start(game_state, our_cards)
             community_cards = self.get_community_cards()
             if community_card_number == 3:
+                if self.four_same(our_cards, community_cards):
+                    return self.get_stack(game_state)
+                if self.three_same(our_cards, community_cards):
+                    return self.get_stack(game_state)
                 return self.check_at_start(game_state, our_cards)
             if community_card_number == 4:
+                if self.four_same(our_cards, community_cards):
+                    return self.get_stack(game_state)
+                if self.three_same(our_cards, community_cards):
+                    return self.get_stack(game_state)
                 return self.check_at_start(game_state, our_cards)
             if community_card_number == 5:
+                if self.four_same(our_cards, community_cards):
+                    return self.get_stack(game_state)
+                if self.three_same(our_cards, community_cards):
+                    return self.get_stack(game_state)
                 return self.check_at_start(game_state, our_cards)
         return 0
 
