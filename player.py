@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_2.3"
+    VERSION = "Version_2.5"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -39,21 +39,22 @@ class Player:
                 return ints[rank]
 
     def check_at_start(self, game_state, our_cards):
-        if our_cards[0]['rank'] == our_cards[1]['rank']:
-            if our_cards[0]['rank'] in "JQKA":
-                return self.get_stack(game_state)
-            else:
-                if self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state) > self.get_stack(
-                        game_state):
+        if our_cards:
+            if our_cards[0]['rank'] == our_cards[1]['rank']:
+                if our_cards[0]['rank'] in "JQKA":
                     return self.get_stack(game_state)
                 else:
-                    return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-        elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
-            return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-        elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank']) > 8:
-            return self.get_minimum_raise(game_state)
-        elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank']) > 8:
-            return self.get_minimum_raise(game_state)
+                    if self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state) > self.get_stack(
+                            game_state):
+                        return self.get_stack(game_state)
+                    else:
+                        return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
+            elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
+                return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
+            elif our_cards[0]['rank'] in "JQKA" or our_cards[1]['rank'] in "JQKA":
+                return self.get_minimum_raise(game_state)
+            else:
+                return 0
         return 0
 
     def number_of_community_cards(self, game_state):
@@ -81,6 +82,7 @@ class Player:
             except KeyError as e:
                 pass
         return current_buy_in
+
 
     def get_minimum_raise(self, game_state):
         minimum_raise = 0
@@ -131,11 +133,13 @@ class Player:
         if game_state:
             return game_state['bet_index']
 
+
     def get_colors(self, game_state):
         ours = self.get_our_cards(game_state)
         suit1 = ours[0]
         print("The suit of the first card is {}".format(suit1))
         print("We have {}".format(ours))
+
 
     def get_our_bet(self, game_state):
         our_player = self.get_our_player(game_state)
@@ -146,3 +150,4 @@ class Player:
             except KeyError as e:
                 pass
         return our_bet
+
