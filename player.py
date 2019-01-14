@@ -52,3 +52,9 @@ class Player:
         except KeyError as e:
             pass
         return community_cards
+
+    def get_stack(self, game_state):
+        our_player = self.get_our_player(game_state)
+        stack = None
+        if our_player:
+            return our_player['stack']
