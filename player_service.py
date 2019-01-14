@@ -4,6 +4,8 @@ import json
 import BaseHTTPServer
 import os
 from player import Player
+import sys
+
 
 
 HOST_NAME = '0.0.0.0'
@@ -33,6 +35,12 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
             game_state = json.loads(postvars['game_state'][0])
         else:
             game_state = {}
+
+        if game_state:
+            current_buy_in = game_state['current_buy_in']
+            if current_buy_in:
+                sys.stderr.write(current_buy_in)
+
 
 
         response = ''
