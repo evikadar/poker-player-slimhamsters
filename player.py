@@ -23,25 +23,28 @@ class Player:
     def get_our_player(self, game_state):
         our_player_index = None
         our_player = None
-
-
-     def sthg(self):
-        our_cards = None
-        community_cards = None
         try:
             our_player_index = game_state['in_action']
         except KeyError as e:
             pass
         if our_player_index:
             our_player = game_state['players'][our_player_index]
-            if our_player:
-                sys.stderr.write("\n\n\n{}\n\n".format(our_player))
+        return our_player
+
+    def get_our_cards(self, game_state):
+        our_cards = None
+        our_player = self.get_our_player(game_state)
         if our_player:
             try:
                 our_cards = our_player['hole_cards']
             except KeyError as e:
                 pass
+        return our_cards
+
+    def get_community_cards(self, game_state):
+        community_cards = None
         try:
             community_cards = game_state['community_cards']
         except KeyError as e:
             pass
+        return community_cards
