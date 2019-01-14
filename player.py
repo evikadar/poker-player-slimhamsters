@@ -3,9 +3,11 @@ class Player:
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
-        if raise_value:
+        if raise_value is not None:
             return raise_value
-        return 0
+        else:
+            return 0
+
 
     def showdown(self, game_state):
         pass
