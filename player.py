@@ -62,3 +62,17 @@ class Player:
         stack = None
         if our_player:
             return our_player['stack']
+
+    def get_bet_index(self, game_state):
+        if game_state:
+            return game_state['bet_index']
+
+    def get_our_bet(self, game_state):
+        our_player = self.get_our_player(game_state)
+        our_bet = None
+        if our_player:
+            try:
+                our_bet = our_player['bet']
+            except KeyError as e:
+                pass
+        return our_bet
