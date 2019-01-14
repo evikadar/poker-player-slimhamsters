@@ -8,9 +8,9 @@ class Player:
         pass
 
     def check_our_hand(self, game_state):
-        if our_cards[0]['rank'] == our_cards[1]['rank']:
+        if self.get_our_cards()[0]['rank'] == self.get_our_cards()[1]['rank']:
             return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
-        elif our_cards[0]['rank'] in "JQKA" and our_cards[1]['rank'] in "JQKA":
+        elif self.get_our_cards()[0]['rank'] in "JQKA" and self.get_our_cards()[1]['rank'] in "JQKA":
             return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
 
     def do_raise(self, game_state):
