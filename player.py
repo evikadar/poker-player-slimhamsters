@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_0.3"
+    VERSION = "Version_0.5"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(self, game_state)
@@ -9,13 +9,20 @@ class Player:
         pass
 
     def check_our_hand(self, game_state):
-        try:
-            if self.get_our_cards()[0]['rank'] == self.get_our_cards()[1]['rank']:
+        our_cards = self.get_our_cards(game_state)
+        if our_cards:
+            if our_cards[0]['rank'] == our_cards[1]['rank']:
+                if our_cards[0]['rank'] in "JQKA":
+                    return self.get_stack(game_state)
+                else:
+                    if self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state) > self.get_stack(self, game_state):
+                        return self.get_stack(self, game_state)
+                    else:
+                        return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
+            elif our_cards[0]['rank'] in "JQKA" and our_cards[1]['rank'] in "JQKA":
                 return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
-            elif self.get_our_cards()[0]['rank'] in "JQKA" and self.get_our_cards()[1]['rank'] in "JQKA":
-                return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
-        except self.get_our_cards() is None:
-            return 0
+
+
 
     def do_raise(self, game_state):
         pass
