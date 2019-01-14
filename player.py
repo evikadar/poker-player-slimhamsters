@@ -36,9 +36,7 @@ class Player:
                         return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
             elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
                 return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
-                return self.get_minimum_raise(game_state)
-            elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
+            elif our_cards[0]['rank'] in "10JQKA" or our_cards[1]['rank'] in "10JQKA":
                 return self.get_minimum_raise(game_state)
         return 0
 
