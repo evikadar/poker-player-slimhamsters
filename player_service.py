@@ -39,10 +39,14 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         if game_state:
             current_buy_in = game_state['current_buy_in']
-            our_player_index = game_state['in_action']
-            our_player = game_state['players'][our_player_index]
-            if our_player:
-                sys.stderr.write("\n\n\n%s\n\n", our_player)
+            try:
+                our_player_index = game_state['in_action']
+            except KeyError as e:
+                pass
+            if our_player_index:
+                our_player = game_state['players'][our_player_index]
+                if our_player:
+                    sys.stderr.write("\n\n\n{}\n\n".format(our_player))
 
 
 
