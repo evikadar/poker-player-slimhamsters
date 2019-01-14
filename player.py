@@ -2,6 +2,7 @@ class Player:
     VERSION = "Version_0.9"
 
     def betRequest(self, game_state):
+        self.check_same_colors(game_state)
         raise_value = self.check_our_hand(game_state)
         if raise_value is not None:
             return raise_value
@@ -104,3 +105,14 @@ class Player:
             except KeyError as e:
                 pass
         return our_bet
+
+    # van a kezemben 2 kártya. van 3 v 4 common kártya.
+    # ugyanaz e a 2 kártyám színe és van e a customból min 2 ugyanolyan szín.
+    # ha ez van akkor betteljen a minimummal.
+    # Ha a commonból már 5 van és összesen van 5 ugyanolyan szín akkor a stacket emelje fel
+
+    def check_same_colors(self, game_state):
+        our_cards = self.get_our_cards(game_state)
+        print("Cards are: {}".format(our_cards))
+
+
