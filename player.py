@@ -2,16 +2,16 @@ class Player:
     VERSION = "Version_0.3"
 
     def betRequest(self, game_state):
-        return 0
+        return self.get_current_buy_in(self, game_state)
 
     def showdown(self, game_state):
         pass
 
     def check_our_hand(self, game_state):
         if our_cards[0]['rank'] == our_cards[1]['rank']:
-            return current_buy_in + get_minimum_raise(game_state)
+            return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
         elif our_cards[0]['rank'] in "JQKA" and our_cards[1]['rank'] in "JQKA":
-            return current_buy_in + minimum_raise
+            return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
 
     def do_raise(self, game_state):
         pass
