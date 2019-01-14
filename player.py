@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_2.6"
+    VERSION = "Version_2.7"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -136,8 +136,8 @@ class Player:
 
     def get_colors(self, game_state):
         ours = self.get_our_cards(game_state)
-        suit1 = ours[0]["u'suit'"]
-        suit2 = ours[1]["u'suit'"]
+        suit1 = ours[0]['suit']
+        suit2 = ours[1]['suit']
         print("The suit of the first card is {}".format(suit1))
         print("The suit of the second card is {}".format(suit2))
         print("We have {}".format(ours))
