@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_2.0"
+    VERSION = "Version_2.1"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -15,13 +15,13 @@ class Player:
         print("Our cards are {}".format(our_cards))
         community_card_number = 0
         if community_card_number == 0:
-            self.check_at_start(game_state, our_cards)
+            return self.check_at_start(game_state, our_cards)
         if community_card_number == 3:
-            self.check_at_start(game_state, our_cards)
+            return self.check_at_start(game_state, our_cards)
         if community_card_number == 4:
-            self.check_at_start(game_state, our_cards)
+            return self.check_at_start(game_state, our_cards)
         if community_card_number == 5:
-            self.check_at_start(game_state, our_cards)
+            return self.check_at_start(game_state, our_cards)
 
     def check_at_start(self, game_state, our_cards):
         if our_cards:
@@ -40,8 +40,7 @@ class Player:
                 return self.get_minimum_raise(game_state)
             elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
                 return self.get_minimum_raise(game_state)
-            else:
-                return 0
+        return 0
 
     def number_of_community_cards(self, game_state):
         if game_state:
