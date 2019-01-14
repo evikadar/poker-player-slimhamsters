@@ -164,3 +164,31 @@ class Player:
             else:
                 counter = 1
         return False
+
+    def three_same(self, our_cards, community_cards):
+        counter = 1
+        all_cards = our_cards + community_cards
+        ranks = [self.get_int_from_rank(card['rank']) for card in all_cards]
+        ranks.sort()
+        for i in range(len(ranks) - 1):
+            if ranks[i] == ranks[i + 1]:
+                counter += 1
+                if counter == 3:
+                    return True
+            else:
+                counter = 1
+        return False
+
+    def pair(self, our_cards, community_cards):
+        counter = 1
+        all_cards = our_cards + community_cards
+        ranks = [self.get_int_from_rank(card['rank']) for card in all_cards]
+        ranks.sort()
+        for i in range(len(ranks) - 1):
+            if ranks[i] == ranks[i + 1]:
+                counter += 1
+                if counter == 2:
+                    return True
+            else:
+                counter = 1
+        return False
