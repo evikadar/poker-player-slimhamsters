@@ -27,7 +27,7 @@ class Player:
         pass
 
     def get_current_buy_in(self, game_state):
-        current_buy_in = 0;
+        current_buy_in = 0
         if game_state:
             try:
                 current_buy_in = game_state['current_buy_in']
