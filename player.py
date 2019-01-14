@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_1.01"
+    VERSION = "Version_1.02"
 
     def betRequest(self, game_state):
         self.check_same_colors(game_state)
