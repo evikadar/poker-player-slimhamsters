@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_2.2"
+    VERSION = "Version_2.3"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -38,6 +38,8 @@ class Player:
                 return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
             elif our_cards[0]['rank'] in "10JQKA" or our_cards[1]['rank'] in "10JQKA":
                 return self.get_minimum_raise(game_state)
+            else:
+                return 0
         return 0
 
     def number_of_community_cards(self, game_state):
