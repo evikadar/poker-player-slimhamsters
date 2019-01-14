@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_0.7"
+    VERSION = "Version_1.0"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -28,7 +28,24 @@ class Player:
                     return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
         if community_card_number == 1:
             self.check_at_start(game_state, our_cards)
-            
+
+        if our_cards:
+            if our_cards[0]['rank'] == our_cards[1]['rank']:
+                if our_cards[0]['rank'] in "10JQKA":
+                    return self.get_stack(game_state)
+                else:
+                    if self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state) > self.get_stack(game_state):
+                        return self.get_stack(game_state)
+                    else:
+                        return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
+            #elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
+            #    return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
+            #elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
+            #    return self.get_minimum_raise(game_state)
+            #elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
+            #    return self.get_minimum_raise(game_state)
+            else:
+                return 0
 
     def check_at_start(self, game_state, our_cards):
         if our_cards:
@@ -54,7 +71,13 @@ class Player:
                 return len(community_cards)
 
     def do_raise(self, game_state):
-        pass
+        current_buy_in = self.get_current_buy_in(game_state)
+        minimum_raise = self.get_minimum_raise(game_state)
+        our_bet = self.get_our_bet(game_state)
+        player = self.get_our_player(game_state)
+        if game_state and player:
+            return current_buy_in - our_bet + minimum_raise
+        return 0
 
     def get_current_buy_in(self, game_state):
         current_buy_in = 0
@@ -124,3 +147,14 @@ class Player:
             except KeyError as e:
                 pass
         return our_bet
+
+    # van a kezemben 2 kártya. van 3 v 4 common kártya.
+    # ugyanaz e a 2 kártyám színe és van e a customból min 2 ugyanolyan szín.
+    # ha ez van akkor betteljen a minimummal.
+    # Ha a commonból már 5 van és összesen van 5 ugyanolyan szín akkor a stacket emelje fel
+
+    def check_same_colors(self, game_state):
+        our_cards = self.get_our_cards(game_state)
+        print("Cards are: {}".format(our_cards))
+
+
