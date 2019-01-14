@@ -50,6 +50,11 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
                     sys.stderr.write("\n\n\n{}\n\n".format(our_player))
 
 
+        if oocard[0]['rank'] == oocard[1]['rank']:
+            return_value = current_buy_in + minimum_raise
+        elif
+
+
 
 
         response = ''
