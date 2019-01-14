@@ -36,40 +36,6 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
         else:
             game_state = {}
 
-
-        if game_state:
-            current_buy_in = game_state['current_buy_in']
-            minimum_raise = game_state['minimum_raise']
-            our_player_index = None
-            our_player = None
-            our_cards = []
-            community_cards = []
-            try:
-                our_player_index = game_state['in_action']
-            except KeyError as e:
-                pass
-            if our_player_index:
-                our_player = game_state['players'][our_player_index]
-                if our_player:
-                    sys.stderr.write("\n\n\n{}\n\n".format(our_player))
-            if our_player:
-                try:
-                    our_cards = our_player['hole_cards']
-                except KeyError as e:
-                    pass
-            try:
-                community_cards = game_state['community_cards']
-            except KeyError as e:
-                pass
-
-
-
-
-
-
-
-
-
         response = ''
         if action == 'bet_request':
             response = Player().betRequest(game_state)
@@ -79,8 +45,6 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
             response = Player.VERSION
 
         self.wfile.write(response)
-
-
 
 
 
