@@ -35,9 +35,9 @@ class Player:
                         return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
             elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
                 return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
+            elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank']) > 8:
                 return self.get_minimum_raise(game_state)
-            elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
+            elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank']) > 8:
                 return self.get_minimum_raise(game_state)
         return 0
 
@@ -66,7 +66,6 @@ class Player:
             except KeyError as e:
                 pass
         return current_buy_in
-
 
     def get_minimum_raise(self, game_state):
         minimum_raise = 0
@@ -126,4 +125,20 @@ class Player:
             except KeyError as e:
                 pass
         return our_bet
+
+    def combos(self, our_cards, community_cards):
+        counter = 1
+        all_cards = our_cards + community_cards
+        ranks = [self.get_int_from_rank(card['rank']) for card in all_cards]
+        for i in range(len(all_cards)-1):
+            if all_cards[i]['rank'] == all_cards[i+1]['rank']:
+                counter += 1
+                if counter == 4:
+                    return 'four_same'
+                if all_cards[i+1]['rank'] == all_cards[i+2]['rank']:
+                    continue
+                else:
+                    counter = 1
+
+
 
