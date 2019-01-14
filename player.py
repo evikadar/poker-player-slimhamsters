@@ -31,8 +31,8 @@ class Player:
             return game_state['current_buy_in']
 
     def get_minimum_raise(self, game_state):
+        minimum_raise = 0
         if game_state:
-            minimum_raise = 0
             try:
                 minimum_raise = game_state['minimum_raise']
             except KeyError as e:
