@@ -10,6 +10,12 @@ class Player:
         pass
 
     def do_raise(self, game_state):
+        current_buy_in = game_state['current_buy_in']
+        minimum_raise = game_state['minimum_raise']
+
+        return current_buy_in - players[in_action][bet] + minimum_raise
+
+    def do_call(self, game_state):
         pass
 
     def get_current_buy_in(self, game_state):
