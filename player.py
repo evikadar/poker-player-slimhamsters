@@ -9,7 +9,7 @@ class Player:
         pass
 
     def check_our_hand(self, game_state):
-        try:
+        if self.:
             if self.get_our_cards()[0]['rank'] == self.get_our_cards()[1]['rank']:
                 return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
             elif self.get_our_cards()[0]['rank'] in "JQKA" and self.get_our_cards()[1]['rank'] in "JQKA":
