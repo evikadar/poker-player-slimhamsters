@@ -14,17 +14,22 @@ class Player:
 
     def check_our_hand(self, game_state):
         our_cards = self.get_our_cards(game_state)
+        print("Our cards are {}".format(our_cards))
         if our_cards:
             if our_cards[0]['rank'] == our_cards[1]['rank']:
-                if our_cards[0]['rank'] in "JQKA":
+                if our_cards[0]['rank'] in "10JQKA":
                     return self.get_stack(game_state)
                 else:
                     if self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state) > self.get_stack(game_state):
-                        return self.get_stack(game_state)
+                        return self.get_stack()
                     else:
                         return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            elif our_cards[0]['rank'] in "JQKA" and our_cards[1]['rank'] in "JQKA":
-                return self.do_raise(game_state)
+            elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
+                return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
+            elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
+                return self.get_minimum_raise(game_state)
+            elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
+                return self.get_minimum_raise(game_state)
             else:
                 return 0
 
@@ -62,10 +67,12 @@ class Player:
         our_player = None
         try:
             our_player_index = game_state['in_action']
+            print("I am in get our player. Our player index is {}.".format(our_player_index))
         except KeyError as e:
             pass
         if our_player_index:
             our_player = game_state['players'][our_player_index]
+        print("Get our player will return {}".format(our_player))
         return our_player
 
     def get_our_cards(self, game_state):
