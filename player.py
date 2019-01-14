@@ -32,7 +32,12 @@ class Player:
 
     def get_minimum_raise(self, game_state):
         if game_state:
-            return game_state['minimum_raise']
+            minimum_raise = 0
+            try:
+                minimum_raise = game_state['minimum_raise']
+            except KeyError as e:
+                pass
+        return minimum_raise
 
     def get_our_player(self, game_state):
         our_player_index = None
