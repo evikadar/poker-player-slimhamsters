@@ -12,7 +12,6 @@ class Player:
 
     def check_our_hand(self, game_state):
         our_cards = self.get_our_cards(game_state)
-        print("Our cards are {}".format(our_cards))
         community_card_number = 0
         if community_card_number == 0:
             return self.check_at_start(game_state, our_cards)
@@ -127,14 +126,4 @@ class Player:
             except KeyError as e:
                 pass
         return our_bet
-
-    # van a kezemben 2 kártya. van 3 v 4 common kártya.
-    # ugyanaz e a 2 kártyám színe és van e a customból min 2 ugyanolyan szín.
-    # ha ez van akkor betteljen a minimummal.
-    # Ha a commonból már 5 van és összesen van 5 ugyanolyan szín akkor a stacket emelje fel
-
-    def check_same_colors(self, game_state):
-        our_cards = self.get_our_cards(game_state)
-        print("Cards are: {}".format(our_cards))
-
 
