@@ -119,5 +119,3 @@ class Player:
     def check_same_colors(self, game_state):
         our_cards = self.get_our_cards(game_state)
         print("Cards are: {}".format(our_cards))
-
-
