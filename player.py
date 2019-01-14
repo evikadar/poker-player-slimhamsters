@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_1.0"
+    VERSION = "Version_1.1"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(game_state)
@@ -15,37 +15,14 @@ class Player:
         print("Our cards are {}".format(our_cards))
         community_card_number = 0
         if community_card_number == 0:
-            if our_cards:
-                if our_cards[0]['rank'] == our_cards[1]['rank']:
-                    if our_cards[0]['rank'] in "JQKA":
-                        return self.get_stack(game_state)
-                    else:
-                        if self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state) > self.get_stack(game_state):
-                            return self.get_stack(game_state)
-                        else:
-                            return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-                elif our_cards[0]['rank'] in "JQKA" and our_cards[1]['rank'] in "JQKA":
-                    return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-        if community_card_number == 1:
+            self.check_at_start(game_state, our_cards)
+        if community_card_number == 3:
+            self.check_at_start(game_state, our_cards)
+        if community_card_number == 4:
+            self.check_at_start(game_state, our_cards)
+        if community_card_number == 5:
             self.check_at_start(game_state, our_cards)
 
-        if our_cards:
-            if our_cards[0]['rank'] == our_cards[1]['rank']:
-                if our_cards[0]['rank'] in "10JQKA":
-                    return self.get_stack(game_state)
-                else:
-                    if self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state) > self.get_stack(game_state):
-                        return self.get_stack(game_state)
-                    else:
-                        return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            #elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
-            #    return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            #elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
-            #    return self.get_minimum_raise(game_state)
-            #elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
-            #    return self.get_minimum_raise(game_state)
-            else:
-                return 0
 
     def check_at_start(self, game_state, our_cards):
         if our_cards:
@@ -58,9 +35,14 @@ class Player:
                         return self.get_stack(game_state)
                     else:
                         return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-            elif our_cards[0]['rank'] in "JQKA" and our_cards[1]['rank'] in "JQKA":
+            elif our_cards[0]['rank'] in "10JQKA" and our_cards[1]['rank'] in "10JQKA":
                 return self.get_current_buy_in(game_state) + self.get_minimum_raise(game_state)
-
+            elif our_cards[0]['rank'] in "10JQKA" and int(our_cards[1]['rank'])>8:
+                return self.get_minimum_raise(game_state)
+            elif our_cards[1]['rank'] in "10JQKA" and int(our_cards[0]['rank'])>8:
+                return self.get_minimum_raise(game_state)
+            else:
+                return 0
 
     def number_of_community_cards(self, game_state):
         if game_state:
