@@ -30,9 +30,9 @@ class Player:
         current_buy_in = self.get_current_buy_in(game_state)
         minimum_raise = self.get_minimum_raise(game_state)
         our_bet = self.get_our_bet(game_state)
-        in_action = null
-        if game_state and our_bet and :
-            return current_buy_in - players[in_action][our_bet] + minimum_raise
+        player = self.get_our_player(game_state)
+        if game_state and player:
+            return current_buy_in - our_bet + minimum_raise
 
     def get_current_buy_in(self, game_state):
         current_buy_in = 0
@@ -95,7 +95,7 @@ class Player:
 
     def get_our_bet(self, game_state):
         our_player = self.get_our_player(game_state)
-        our_bet = None
+        our_bet = 0
         if our_player:
             try:
                 our_bet = our_player['bet']
