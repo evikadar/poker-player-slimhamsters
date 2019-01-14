@@ -11,7 +11,7 @@ class Player:
         pass
 
     def check_our_hand(self, game_state):
-        our_cards = self.get_our_cards(game_state)
+        self.get_colors(game_state)
         self.get_our_cards(game_state)
         community_card_number = 0
         if community_card_number == 0:
