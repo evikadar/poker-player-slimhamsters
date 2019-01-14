@@ -27,12 +27,18 @@ class Player:
         pass
 
     def get_current_buy_in(self, game_state):
+        current_buy_in = 0
         if game_state:
-            return game_state['current_buy_in']
+            try:
+                current_buy_in = game_state['current_buy_in']
+            except KeyError as e:
+                pass
+        return current_buy_in
+
 
     def get_minimum_raise(self, game_state):
+        minimum_raise = 0
         if game_state:
-            minimum_raise = 0
             try:
                 minimum_raise = game_state['minimum_raise']
             except KeyError as e:
