@@ -1,5 +1,5 @@
 class Player:
-    VERSION = "Version_0.3"
+    VERSION = "Version_0.4"
 
     def betRequest(self, game_state):
         raise_value = self.check_our_hand(self, game_state)
@@ -11,11 +11,14 @@ class Player:
     def check_our_hand(self, game_state):
         if self.:
             if self.get_our_cards()[0]['rank'] == self.get_our_cards()[1]['rank']:
+                if self.get_our_cards()[0]['rank'] in "JQKA":
+                    return self.get_stack(game_state)
                 return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
             elif self.get_our_cards()[0]['rank'] in "JQKA" and self.get_our_cards()[1]['rank'] in "JQKA":
                 return self.get_current_buy_in(self, game_state) + self.get_minimum_raise(self, game_state)
         except self.get_our_cards() is None:
             return 0
+
 
     def do_raise(self, game_state):
         pass
@@ -56,3 +59,9 @@ class Player:
         except KeyError as e:
             pass
         return community_cards
+
+    def get_stack(self, game_state):
+        our_player = self.get_our_player(game_state)
+        stack = None
+        if our_player:
+            return our_player['stack']
