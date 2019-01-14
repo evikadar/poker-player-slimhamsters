@@ -42,8 +42,8 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
             minimum_raise = game_state['minimum_raise']
             our_player_index = None
             our_player = None
-            our_cards = None
-            community_cards = None
+            our_cards = []
+            community_cards = []
             try:
                 our_player_index = game_state['in_action']
             except KeyError as e:
@@ -62,9 +62,10 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
             except KeyError as e:
                 pass
 
-        if oocard[0]['rank'] == oocard[1]['rank']:
-            return_value = current_buy_in + minimum_raise
-        elif
+
+
+
+
 
 
 
@@ -78,6 +79,10 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
             response = Player.VERSION
 
         self.wfile.write(response)
+
+
+
+
 
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
