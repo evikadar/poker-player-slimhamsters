@@ -12,6 +12,7 @@ class Player:
 
     def check_our_hand(self, game_state):
         our_cards = self.get_our_cards(game_state)
+        self.get_our_cards(game_state)
         community_card_number = 0
         if community_card_number == 0:
             return self.check_at_start(game_state, our_cards)
@@ -116,6 +117,12 @@ class Player:
     def get_bet_index(self, game_state):
         if game_state:
             return game_state['bet_index']
+
+
+    def get_colors(self, game_state):
+        ours = self.get_our_cards(game_state)
+        print("We have {}".format(ours))
+
 
     def get_our_bet(self, game_state):
         our_player = self.get_our_player(game_state)
